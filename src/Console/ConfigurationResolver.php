@@ -485,13 +485,17 @@ final class ConfigurationResolver
         }
 
         $candidates = array(
-            $configDir.DIRECTORY_SEPARATOR.'.php_cs',
-            $configDir.DIRECTORY_SEPARATOR.'.php_cs.dist',
+            $configDir.DIRECTORY_SEPARATOR.'.php_cs.php',
+            $configDir.DIRECTORY_SEPARATOR.'.php_cs.dist.php',
+            $configDir.DIRECTORY_SEPARATOR.'.php_cs', // @deprecated
+            $configDir.DIRECTORY_SEPARATOR.'.php_cs.dist', // @deprecated
         );
 
         if ($configDir !== $this->cwd) {
-            $candidates[] = $this->cwd.DIRECTORY_SEPARATOR.'.php_cs';
-            $candidates[] = $this->cwd.DIRECTORY_SEPARATOR.'.php_cs.dist';
+            $candidates[] = $this->cwd.DIRECTORY_SEPARATOR.'.php_cs.php';
+            $candidates[] = $this->cwd.DIRECTORY_SEPARATOR.'.php_cs.dist.php';
+            $candidates[] = $this->cwd.DIRECTORY_SEPARATOR.'.php_cs'; // @deprecated
+            $candidates[] = $this->cwd.DIRECTORY_SEPARATOR.'.php_cs.dist'; // @deprecated
         }
 
         return $candidates;
